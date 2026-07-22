@@ -1,0 +1,1578 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mathe-Sommer-Check — 7. Klasse M</title>
+<meta name="description" content="Alle Mathe-Themen der 7. Klasse auf einen Blick — Erklärung, Beispiele, Lösung.">
+<style>
+  :root {
+    --bg: #FBF9F5;
+    --ink: #201F2B;
+    --ink-soft: #5B5A6B;
+    --card: #FFFFFF;
+    --border: #E9E3D8;
+    --shadow: 0 10px 30px rgba(32, 31, 43, 0.08);
+    --shadow-hover: 0 16px 40px rgba(32, 31, 43, 0.14);
+    --radius-lg: 22px;
+    --radius-md: 16px;
+    --radius-sm: 10px;
+
+    --t1: #4C6EF5; --t1-soft: #EEF1FE;
+    --t2: #8B5CF6; --t2-soft: #F3EEFE;
+    --t3: #F59E0B; --t3-soft: #FEF3E2;
+    --t4: #14B8A6; --t4-soft: #E6FBF8;
+    --t5: #EC4899; --t5-soft: #FDEBF3;
+    --t6: #06B6D4; --t6-soft: #E3F8FB;
+    --t7: #84CC16; --t7-soft: #F2FBE3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  }
+
+  img, svg { display: block; max-width: 100%; }
+
+  .icon { width: 1em; height: 1em; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  h1, h2, h3 { font-weight: 800; letter-spacing: -0.02em; }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* ══════════════════ FORTSCHRITT (fixed) ══════════════════ */
+  .fortschritt-leiste-fixed {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: rgba(32,31,43,0.06);
+    z-index: 100;
+  }
+  .fortschritt-leiste-fixed__fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--t1), var(--t3), var(--t5), var(--t7));
+    transition: width 0.5s cubic-bezier(.4,0,.2,1);
+  }
+
+  /* ══════════════════ HERO ══════════════════ */
+  .hero {
+    position: relative;
+    overflow: hidden;
+    background:
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.055) 0px, rgba(255,255,255,0.055) 1px, transparent 1px, transparent 34px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.055) 0px, rgba(255,255,255,0.055) 1px, transparent 1px, transparent 34px),
+      linear-gradient(160deg, #262244 0%, #3B2E63 45%, #4C3A6E 100%);
+    color: #fff;
+    padding: 56px 0 44px;
+    margin-bottom: 8px;
+  }
+
+  .hero-glyph {
+    position: absolute;
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: 700;
+    color: rgba(255,255,255,0.07);
+    z-index: 0;
+    pointer-events: none;
+    line-height: 1;
+    user-select: none;
+  }
+  .hero-glyph--pi { font-size: 340px; top: -70px; right: -10px; }
+  .hero-glyph--percent { font-size: 170px; left: -20px; bottom: -50px; font-style: normal; }
+  @media (max-width: 900px) {
+    .hero-glyph--pi { font-size: 220px; top: -30px; }
+  }
+
+  .hero-sonne {
+    position: absolute;
+    top: -120px; right: -90px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, #FFE08A, #F59E0B 55%, transparent 75%);
+    opacity: 0.55;
+    filter: blur(4px);
+    animation: sonne-puls 7s ease-in-out infinite;
+  }
+  .hero-sonne--2 {
+    top: auto; bottom: -140px; left: -100px; right: auto;
+    width: 260px; height: 260px;
+    background: radial-gradient(circle at 40% 40%, #7CE0D3, #14B8A6 55%, transparent 75%);
+    animation-delay: -3.2s;
+  }
+  @keyframes sonne-puls {
+    0%, 100% { transform: scale(1); opacity: 0.5; }
+    50% { transform: scale(1.08); opacity: 0.68; }
+  }
+
+  .hero-sticker {
+    position: absolute;
+    width: 48px; height: 48px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.22);
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 24px rgba(20, 15, 45, 0.28);
+    backdrop-filter: blur(3px);
+    animation: sticker-float 5.5s ease-in-out infinite;
+    z-index: 1;
+  }
+  .hero-sticker .icon { width: 24px; height: 24px; stroke-width: 1.6; }
+  @keyframes sticker-float {
+    0%, 100% { transform: rotate(var(--rot)) translateY(0); }
+    50% { transform: rotate(var(--rot)) translateY(-9px); }
+  }
+
+  @media (max-width: 900px) {
+    .hero-sticker { display: none; }
+  }
+
+  .hero-inner { position: relative; z-index: 1; }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,0.14);
+    border: 1px solid rgba(255,255,255,0.2);
+    padding: 6px 14px;
+    border-radius: 999px;
+    margin-bottom: 20px;
+  }
+
+  .hero h1 {
+    font-size: clamp(1.9rem, 4.8vw, 2.9rem);
+    font-weight: 800;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+    max-width: 15ch;
+  }
+
+  .hero h1 .hervorheben {
+    background: linear-gradient(100deg, #FDE68A, #F472B6 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero p.lead {
+    margin-top: 16px;
+    font-size: 1.05rem;
+    color: rgba(255,255,255,0.86);
+    max-width: 56ch;
+  }
+
+  .schritte {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .schritt {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: var(--radius-md);
+    padding: 16px 16px 18px;
+    backdrop-filter: blur(2px);
+  }
+
+  .schritt .icon-badge {
+    width: 34px; height: 34px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.16);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .schritt .icon-badge .icon { stroke-width: 2; }
+
+  .schritt h3 { font-size: 0.95rem; margin-bottom: 3px; }
+  .schritt p { font-size: 0.85rem; color: rgba(255,255,255,0.78); }
+
+  .fortschritt-box {
+    margin-top: 28px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.88);
+  }
+
+  .fortschritt-box .schiene {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.16);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .fortschritt-box .schiene-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #FDE68A, #F472B6);
+    border-radius: 999px;
+    transition: width 0.6s cubic-bezier(.4,0,.2,1);
+  }
+
+  #fortschritt-text { white-space: nowrap; font-weight: 600; }
+
+  /* Congrats banner */
+  .glueckwunsch {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .glueckwunsch-karte {
+    display: none;
+    align-items: center;
+    gap: 14px;
+    background: linear-gradient(120deg, #FEF3E2, #FDEBF3);
+    border: 1px solid #F6D9A8;
+    border-radius: var(--radius-md);
+    padding: 16px 20px;
+    margin: 18px 0 0;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #7A4E12;
+    animation: pop-in 0.5s cubic-bezier(.34,1.56,.64,1);
+  }
+  .glueckwunsch-karte.sichtbar { display: flex; }
+  .glueckwunsch-karte .icon { width: 26px; height: 26px; flex-shrink: 0; color: #F59E0B; }
+  @keyframes pop-in {
+    0% { transform: scale(0.9) translateY(-6px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  /* ══════════════════ NAV ══════════════════ */
+  .themen-nav-wrap {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(251,249,245,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 0;
+  }
+
+  .themen-nav {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 0 20px;
+    max-width: 880px;
+    margin: 0 auto;
+  }
+  .themen-nav::-webkit-scrollbar { display: none; }
+
+  .nav-pille {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--ink-soft);
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    padding: 7px 13px 7px 9px;
+    border-radius: 999px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+  .nav-pille .icon { width: 15px; height: 15px; color: var(--accent-pille, var(--ink-soft)); }
+  .nav-pille .haken { display: none; width: 13px; height: 13px; color: #16A34A; }
+  .nav-pille.erledigt .haken { display: inline-block; }
+  .nav-pille:hover { border-color: var(--accent-pille, var(--border)); transform: translateY(-1px); }
+  .nav-pille.aktiv { background: var(--accent-pille-soft, var(--t1-soft)); border-color: var(--accent-pille, var(--t1)); color: var(--ink); }
+
+  /* ══════════════════ REVEAL / MOTION ══════════════════ */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.65s cubic-bezier(.16,.84,.44,1), transform 0.65s cubic-bezier(.16,.84,.44,1);
+  }
+  .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+  /* ══════════════════ THEMA SECTION ══════════════════ */
+  .thema {
+    scroll-margin-top: 66px;
+    padding: 52px 0 8px;
+    border-top: 1px solid var(--border);
+  }
+  .thema:first-of-type { border-top: none; }
+
+  .thema-kopf {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .thema-icon {
+    width: 56px; height: 56px;
+    flex-shrink: 0;
+    border-radius: 16px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .thema-icon .icon { width: 28px; height: 28px; stroke-width: 1.6; }
+
+  .thema-label {
+    display: block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 2px;
+  }
+
+  .thema-kopf h2 { font-size: 1.55rem; }
+
+  .erledigt-btn {
+    margin-left: auto;
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 9px 16px;
+    border-radius: 999px;
+    border: 1.5px solid var(--border);
+    background: var(--card);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .erledigt-btn .icon { width: 16px; height: 16px; }
+  .erledigt-btn:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-1px); }
+  .erledigt-btn.aktiv { background: var(--accent); border-color: var(--accent); color: white; }
+
+  @media (max-width: 620px) {
+    .thema-kopf { flex-wrap: wrap; }
+    .erledigt-btn { margin-left: 70px; }
+  }
+
+  /* ══════════════════ KARTE (Erklärung) ══════════════════ */
+  .erklaerung-karte {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    padding: 26px 26px 24px;
+    margin-bottom: 24px;
+  }
+
+  .erklaerung-karte h3 {
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+
+  .erklaerung-karte p { color: var(--ink); font-size: 1rem; margin-bottom: 10px; }
+  .erklaerung-karte p:last-of-type { margin-bottom: 0; }
+
+  .merksatz {
+    margin-top: 14px;
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 12px 16px;
+    font-size: 0.95rem;
+    font-weight: 600;
+  }
+  .merksatz b { color: var(--accent); }
+
+  .diagramm {
+    margin-top: 18px;
+    background: var(--accent-soft);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    display: flex;
+    justify-content: center;
+  }
+  .diagramm svg { width: 100%; height: auto; max-width: 420px; }
+
+  .diagramm-legende {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+  }
+  .diagramm-legende span { display: inline-flex; align-items: center; gap: 6px; }
+  .legende-strich { width: 18px; height: 3px; border-radius: 2px; display: inline-block; }
+
+  .diagramm-play-btn {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin: 12px auto 0;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--card);
+    border: 1.5px solid var(--accent);
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.15s ease, background 0.2s ease, color 0.2s ease;
+  }
+  .diagramm-play-btn:hover { background: var(--accent); color: #fff; transform: translateY(-1px) scale(1.03); }
+  .diagramm-play-btn:active { transform: translateY(0) scale(0.98); }
+  .diagramm-play-btn .icon { width: 13px; height: 13px; }
+
+  /* Formen-Grid (Flächen & Umfang) */
+  .formen-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .form-karte {
+    background: var(--accent-soft);
+    border-radius: var(--radius-sm);
+    padding: 10px 8px 12px;
+    text-align: center;
+  }
+  .form-karte svg { margin: 0 auto 6px; width: 100%; max-width: 90px; height: 62px; }
+  .form-karte .form-name { font-size: 0.72rem; font-weight: 700; color: var(--ink-soft); margin-bottom: 2px; }
+  .form-karte .form-formel { font-size: 0.78rem; font-weight: 700; color: var(--accent); }
+
+  @media (max-width: 560px) {
+    .formen-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* ══════════════════ AUFGABEN ══════════════════ */
+  .aufgaben-grid {
+    display: grid;
+    gap: 14px;
+  }
+
+  .aufgabe-karte {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 18px 20px;
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+  }
+  .aufgabe-karte:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); border-color: var(--accent); }
+
+  .aufgabe-kopf {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .aufgabe-nr {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-size: 0.78rem;
+    font-weight: 800;
+    flex-shrink: 0;
+    margin-right: 10px;
+  }
+
+  .aufgabe-text { font-size: 1rem; font-weight: 600; flex: 1; }
+
+  .loesung-toggle {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-soft);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.15s ease;
+  }
+  .loesung-toggle:hover { transform: translateY(-1px); }
+  .loesung-toggle .icon { width: 14px; height: 14px; transition: transform 0.3s ease; }
+  .aufgabe-karte.offen .loesung-toggle .icon { transform: rotate(180deg); }
+
+  .loesung-panel-aussen {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s cubic-bezier(.4,0,.2,1);
+  }
+  .aufgabe-karte.offen .loesung-panel-aussen { grid-template-rows: 1fr; }
+  .loesung-panel-innen { overflow: hidden; }
+
+  .loesung-panel {
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    font-size: 0.94rem;
+    color: var(--ink-soft);
+  }
+  .loesung-panel .rechenweg {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    padding: 10px 14px;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    font-size: 0.88rem;
+    color: var(--ink);
+  }
+  .loesung-panel .antwort {
+    font-weight: 800;
+    color: var(--accent);
+    font-size: 1rem;
+    margin-top: 6px;
+  }
+
+  /* ══════════════════ FOOTER ══════════════════ */
+  footer {
+    margin-top: 70px;
+    padding: 40px 0 60px;
+    text-align: center;
+  }
+  footer .footer-titel {
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+  footer p { color: var(--ink-soft); font-size: 0.92rem; }
+  footer .icon { width: 22px; height: 22px; color: var(--t5); margin: 0 auto 10px; }
+
+  /* ══════════════════ KONFETTI ══════════════════ */
+  .konfetti-teil {
+    position: fixed;
+    z-index: 200;
+    width: 8px; height: 8px;
+    border-radius: 2px;
+    pointer-events: none;
+    top: var(--y); left: var(--x);
+    animation: konfetti-flug 0.9s cubic-bezier(.2,.7,.4,1) forwards;
+  }
+  @keyframes konfetti-flug {
+    0% { transform: translate(0,0) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) rotate(var(--rot)); opacity: 0; }
+  }
+
+  @media (max-width: 620px) {
+    .schritte { grid-template-columns: 1fr; }
+    .hero { padding: 40px 0 32px; }
+    .thema-kopf h2 { font-size: 1.3rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Fortschritt oben fixiert -->
+<div class="fortschritt-leiste-fixed"><div class="fortschritt-leiste-fixed__fill" id="topfill"></div></div>
+
+<!-- ══════════════════ ICON SPRITE ══════════════════ -->
+<svg width="0" height="0" style="position:absolute">
+  <defs>
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M4 4.5C4 3.7 4.7 3 5.5 3H12v18H5.5c-.8 0-1.5-.7-1.5-1.5v-15Z"/><path d="M20 4.5c0-.8-.7-1.5-1.5-1.5H12v18h6.5c.8 0 1.5-.7 1.5-1.5v-15Z"/></symbol>
+    <symbol id="icon-pencil" viewBox="0 0 24 24"><path d="m14 4 6 6-10 10H4v-6L14 4Z"/><path d="m13 5 6 6"/></symbol>
+    <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="M4 12.5 9.5 18 20 6"/></symbol>
+    <symbol id="icon-chevron" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+    <symbol id="icon-numberline" viewBox="0 0 24 24"><path d="M2 12h20"/><path d="m18 8 4 4-4 4"/><path d="M6 9v6M12 9v6"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-scale" viewBox="0 0 24 24"><path d="M12 3v18"/><path d="M5 21h14"/><path d="M4 7h7M13 7h7"/><path d="M4 7 1.5 12a2.5 2.5 0 0 0 5 0L4 7Z"/><path d="M20 7 17.5 12a2.5 2.5 0 0 0 5 0L20 7Z"/></symbol>
+    <symbol id="icon-percent" viewBox="0 0 24 24"><circle cx="6.5" cy="6.5" r="3"/><circle cx="17.5" cy="17.5" r="3"/><path d="M19 5 5 19"/></symbol>
+    <symbol id="icon-triangle" viewBox="0 0 24 24"><path d="M12 3 21 20H3L12 3Z"/><path d="M9 17h6"/></symbol>
+    <symbol id="icon-shapes" viewBox="0 0 24 24"><rect x="3" y="3" width="8" height="8" rx="1"/><circle cx="17" cy="7" r="4"/><path d="M4 21h16L12 12 4 21Z"/></symbol>
+    <symbol id="icon-cube" viewBox="0 0 24 24"><path d="M12 2 21 7v10l-9 5-9-5V7l9-5Z"/><path d="M3 7l9 5 9-5"/><path d="M12 12v10"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M3 21V3"/><path d="M3 21h18"/><path d="M6 17 11 9l4 4 5-8"/></symbol>
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></symbol>
+    <symbol id="icon-sparkle" viewBox="0 0 24 24"><path d="M12 2 14 9l7 2-7 2-2 7-2-7-7-2 7-2 2-7Z"/></symbol>
+    <symbol id="icon-compass" viewBox="0 0 24 24"><path d="M12 2v3"/><path d="M12 4 5 21l7-4 7 4-7-17Z"/><circle cx="12" cy="4" r="1.6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-ruler" viewBox="0 0 24 24"><path d="M2 20 20 2l2 2L4 22Z"/><path d="m14.5 5.5 2 2M10.5 9.5l2 2M6.5 13.5l2 2"/></symbol>
+    <symbol id="icon-calculator" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><rect x="7" y="5" width="10" height="4" rx="0.5"/><circle cx="7.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="7.5" cy="17.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="17.5" r="1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="17.5" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-notebook" viewBox="0 0 24 24"><rect x="5" y="2.5" width="16" height="19" rx="1.5"/><path d="M5 6.5h16M5 10.5h16M5 14.5h11"/><circle cx="2.6" cy="5.5" r="1" fill="currentColor" stroke="none"/><circle cx="2.6" cy="9.5" r="1" fill="currentColor" stroke="none"/><circle cx="2.6" cy="13.5" r="1" fill="currentColor" stroke="none"/><circle cx="2.6" cy="17.5" r="1" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-eraser" viewBox="0 0 24 24"><path d="M9 20H4l-1-1 12-13 6 6-9 9Z"/><path d="M13 6 19 12"/><path d="M9 20h11"/></symbol>
+    <symbol id="icon-divide" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><circle cx="12" cy="5.5" r="1.6" fill="currentColor" stroke="none"/><circle cx="12" cy="18.5" r="1.6" fill="currentColor" stroke="none"/></symbol>
+    <symbol id="icon-multiply" viewBox="0 0 24 24"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></symbol>
+    <symbol id="icon-equals" viewBox="0 0 24 24"><line x1="4" y1="9" x2="20" y2="9"/><line x1="4" y1="15" x2="20" y2="15"/></symbol>
+    <symbol id="icon-pi" viewBox="0 0 24 24"><line x1="3.5" y1="6" x2="20.5" y2="6"/><path d="M8 6v11a3 3 0 0 1-2.5 3"/><path d="M16 6v9a3 3 0 0 0 2.5 3"/></symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24"><path d="M6 4.5v15l13-7.5-13-7.5Z" fill="currentColor" stroke="none"/></symbol>
+  </defs>
+</svg>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<header class="hero">
+  <div class="hero-sonne"></div>
+  <div class="hero-sonne hero-sonne--2"></div>
+  <div class="hero-glyph hero-glyph--pi" aria-hidden="true">π</div>
+  <div class="hero-glyph hero-glyph--percent" aria-hidden="true">%</div>
+
+  <div class="hero-sticker" style="--rot:-11deg; top:9%; right:7%; color:#FDE68A;" aria-hidden="true"><svg class="icon"><use href="#icon-calculator"></use></svg></div>
+  <div class="hero-sticker" style="--rot:9deg; top:2%; right:19%; color:#7CE0D3; animation-delay:-1.2s;" aria-hidden="true"><svg class="icon"><use href="#icon-ruler"></use></svg></div>
+  <div class="hero-sticker" style="--rot:-7deg; top:26%; right:2%; color:#F9A8D4; animation-delay:-2.4s;" aria-hidden="true"><svg class="icon"><use href="#icon-pencil"></use></svg></div>
+  <div class="hero-sticker" style="--rot:13deg; top:45%; right:14%; color:#C4B5FD; animation-delay:-3.1s;" aria-hidden="true"><svg class="icon"><use href="#icon-compass"></use></svg></div>
+  <div class="hero-sticker" style="--rot:-14deg; top:64%; right:4%; color:#FDBA74; animation-delay:-0.6s;" aria-hidden="true"><svg class="icon"><use href="#icon-multiply"></use></svg></div>
+  <div class="hero-sticker" style="--rot:8deg; top:82%; right:20%; color:#86EFAC; animation-delay:-4s;" aria-hidden="true"><svg class="icon"><use href="#icon-percent"></use></svg></div>
+  <div class="hero-sticker" style="--rot:-9deg; top:6%; left:2%; color:#93C5FD; animation-delay:-1.8s;" aria-hidden="true"><svg class="icon"><use href="#icon-notebook"></use></svg></div>
+  <div class="hero-sticker" style="--rot:12deg; top:30%; left:-1%; color:#FCA5A5; animation-delay:-2.9s;" aria-hidden="true"><svg class="icon"><use href="#icon-divide"></use></svg></div>
+  <div class="hero-sticker" style="--rot:-6deg; top:55%; left:1%; color:#FDE68A; animation-delay:-3.6s;" aria-hidden="true"><svg class="icon"><use href="#icon-equals"></use></svg></div>
+
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><svg class="icon"><use href="#icon-sun"></use></svg> Mathematik · 7. Klasse M · Wiederholung</span>
+    <h1>Ein letzter Blick auf <span class="hervorheben">alles</span>, was ihr dieses Jahr gelernt habt</h1>
+    <p class="lead">Sieben Themen, ein Überblick. Lest kurz durch, wie es nochmal funktioniert hat, probiert die Beispiele auf einem Schmierzettel aus und checkt mit einem Klick, ob ihr richtig lagt. Keine Note, kein Druck — nur damit in den Ferien nichts komplett verschwindet.</p>
+
+    <div class="schritte">
+      <div class="schritt">
+        <div class="icon-badge"><svg class="icon"><use href="#icon-book"></use></svg></div>
+        <h3>1. Lesen</h3>
+        <p>Erklärung und Merksatz zu jedem Thema kurz durchlesen.</p>
+      </div>
+      <div class="schritt">
+        <div class="icon-badge"><svg class="icon"><use href="#icon-pencil"></use></svg></div>
+        <h3>2. Ausprobieren</h3>
+        <p>Die Beispielaufgabe selbst rechnen, am besten auf Papier.</p>
+      </div>
+      <div class="schritt">
+        <div class="icon-badge"><svg class="icon"><use href="#icon-eye"></use></svg></div>
+        <h3>3. Prüfen</h3>
+        <p>Lösung aufdecken und mit dem eigenen Ergebnis vergleichen.</p>
+      </div>
+    </div>
+
+    <div class="fortschritt-box">
+      <span id="fortschritt-text">0 / 7 Themen abgehakt</span>
+      <div class="schiene"><div class="schiene-fill" id="herofill"></div></div>
+    </div>
+  </div>
+</header>
+
+<div class="glueckwunsch">
+  <div class="glueckwunsch-karte" id="glueckwunsch-karte">
+    <svg class="icon"><use href="#icon-sparkle"></use></svg>
+    <span>Alle sieben Themen geschafft! Ihr seid startklar für die Ferien. Schöne Sommerferien!</span>
+  </div>
+</div>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav class="themen-nav-wrap">
+  <div class="themen-nav" id="themen-nav">
+    <a class="nav-pille" data-thema="1" href="#thema-1" style="--accent-pille:#4C6EF5;--accent-pille-soft:#EEF1FE;"><svg class="icon"><use href="#icon-numberline"></use></svg>Rationale Zahlen<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="2" href="#thema-2" style="--accent-pille:#8B5CF6;--accent-pille-soft:#F3EEFE;"><svg class="icon"><use href="#icon-scale"></use></svg>Terme & Gleichungen<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="3" href="#thema-3" style="--accent-pille:#F59E0B;--accent-pille-soft:#FEF3E2;"><svg class="icon"><use href="#icon-percent"></use></svg>Prozentrechnen<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="4" href="#thema-4" style="--accent-pille:#14B8A6;--accent-pille-soft:#E6FBF8;"><svg class="icon"><use href="#icon-triangle"></use></svg>Dreiecke<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="5" href="#thema-5" style="--accent-pille:#EC4899;--accent-pille-soft:#FDEBF3;"><svg class="icon"><use href="#icon-shapes"></use></svg>Flächen & Umfang<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="6" href="#thema-6" style="--accent-pille:#06B6D4;--accent-pille-soft:#E3F8FB;"><svg class="icon"><use href="#icon-cube"></use></svg>Prismen & Volumen<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+    <a class="nav-pille" data-thema="7" href="#thema-7" style="--accent-pille:#84CC16;--accent-pille-soft:#F2FBE3;"><svg class="icon"><use href="#icon-chart"></use></svg>Zuordnungen<svg class="icon haken"><use href="#icon-check"></use></svg></a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <!-- ══════════════════ THEMA 1: RATIONALE ZAHLEN ══════════════════ -->
+  <section class="thema" id="thema-1" style="--accent:#4C6EF5;--accent-soft:#EEF1FE;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-numberline"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 1</span>
+        <h2>Rationale Zahlen</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="1"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Bei Plus und Minus zählt nur das Vorzeichen der Zahl, die dazukommt. Addierst du eine positive Zahl, wanderst du auf der Zahlengeraden nach rechts. Addierst du eine negative Zahl, wanderst du nach links. Subtrahieren einer negativen Zahl ist dasselbe wie Addieren: "minus minus" wird "plus".</p>
+      <p>Bei Mal und Geteilt zählt nur, ob die Vorzeichen gleich oder verschieden sind.</p>
+      <div class="merksatz">Merksatz: <b>Gleiche Vorzeichen → Ergebnis positiv.</b> Verschiedene Vorzeichen → Ergebnis negativ. Gilt für Mal <em>und</em> Geteilt.</div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 400 130" class="svg-zahlenstrahl">
+          <line x1="20" y1="70" x2="380" y2="70" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M372 62 L382 70 L372 78" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M28 62 L18 70 L28 78" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <g stroke="var(--accent)" stroke-width="2" opacity="0.55">
+            <line x1="60" y1="63" x2="60" y2="77"/><line x1="100" y1="63" x2="100" y2="77"/>
+            <line x1="140" y1="63" x2="140" y2="77"/><line x1="220" y1="63" x2="220" y2="77"/>
+            <line x1="260" y1="63" x2="260" y2="77"/><line x1="300" y1="63" x2="300" y2="77"/><line x1="340" y1="63" x2="340" y2="77"/>
+          </g>
+          <line x1="180" y1="58" x2="180" y2="82" stroke="var(--accent)" stroke-width="3"/>
+          <g font-size="12" fill="#5B5A6B" text-anchor="middle" font-family="inherit">
+            <text x="60" y="96">-4</text><text x="100" y="96">-3</text><text x="140" y="96">-2</text>
+            <text x="180" y="96" font-weight="700" fill="var(--accent)">0</text>
+            <text x="220" y="96">1</text><text x="260" y="96">2</text><text x="300" y="96">3</text><text x="340" y="96">4</text>
+          </g>
+          <path class="zs-pfeil" d="M140 40 C 165 18, 195 18, 220 40" fill="none" stroke="#EC4899" stroke-width="2.2" stroke-linecap="round" stroke-dasharray="90" stroke-dashoffset="90" marker-end="url(#pfeil-rz)"/>
+          <defs><marker id="pfeil-rz" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#EC4899"/></marker></defs>
+          <circle class="zs-punkt-start" cx="140" cy="70" r="5" fill="#fff" stroke="#EC4899" stroke-width="2.4"/>
+          <circle class="zs-punkt-ende" cx="220" cy="70" r="0" fill="#EC4899" stroke="#EC4899" stroke-width="2"/>
+          <text class="zs-label" x="180" y="18" text-anchor="middle" font-size="13" font-weight="700" fill="#EC4899" opacity="0">-2 + 4 = 2</text>
+        </svg>
+      </div>
+      <button class="diagramm-play-btn" data-anim="1"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Berechne: (-7) + (-5) - (-10)</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Minus einer negativen Zahl wird zu Plus. Der Term wird zu einer reinen Additionskette:</p>
+            <div class="rechenweg">(-7) + (-5) - (-10) = -7 - 5 + 10 = -2</div>
+            <p class="antwort">Antwort: -2</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Berechne: (-3) · 6 : (-2)</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Von links nach rechts rechnen, bei jedem Schritt die Vorzeichenregel anwenden:</p>
+            <div class="rechenweg">(-3) · 6 = -18   (verschiedene Vorzeichen → negativ)
+-18 : (-2) = 9   (gleiche Vorzeichen → positiv)</div>
+            <p class="antwort">Antwort: 9</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Setze &lt;, &gt; oder =: -2,3 ___ -2,03</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Klassischer Stolperstein: Bei negativen Zahlen ist die Zahl mit dem <em>größeren</em> Betrag die <em>kleinere</em> Zahl. -2,3 = -2,30, und 2,30 ist größer als 2,03 — also liegt -2,3 weiter links auf der Zahlengeraden.</p>
+            <div class="rechenweg">-2,3 = -2,30 < -2,03</div>
+            <p class="antwort">Antwort: -2,3 &lt; -2,03</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 2: TERME & GLEICHUNGEN ══════════════════ -->
+  <section class="thema" id="thema-2" style="--accent:#8B5CF6;--accent-soft:#F3EEFE;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-scale"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 2</span>
+        <h2>Terme und Gleichungen</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="2"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p><strong>Terme zusammenfassen:</strong> Nur gleiche Variablen darf man zusammenzählen (x mit x, Zahl mit Zahl). x und x² zum Beispiel bleiben getrennt.</p>
+      <p><strong>Gleichungen lösen:</strong> Stell dir die Gleichung wie eine Waage vor, die im Gleichgewicht ist. Was du auf der einen Seite tust, musst du auf der anderen Seite genauso tun, sonst kippt sie. So schälst du die Variable Schritt für Schritt frei.</p>
+      <div class="merksatz">Merksatz: <b>Gegenoperation auf beiden Seiten.</b> Plus wird durch Minus aufgehoben, Mal durch Geteilt — und umgekehrt.</div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 260 190" class="svg-waage">
+          <line x1="130" y1="20" x2="130" y2="175" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <path d="M100 175 h60" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="130" cy="20" r="5" fill="var(--accent)"/>
+          <g class="waage-balken">
+            <line x1="35" y1="34" x2="225" y2="34" stroke="var(--accent)" stroke-width="4" stroke-linecap="round"/>
+            <line x1="35" y1="34" x2="35" y2="66" stroke="var(--accent)" stroke-width="2"/>
+            <line x1="225" y1="34" x2="225" y2="66" stroke="var(--accent)" stroke-width="2"/>
+            <path d="M15 66 q20 26 40 0 Z" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round"/>
+            <path d="M205 66 q20 26 40 0 Z" fill="none" stroke="var(--accent)" stroke-width="2.4" stroke-linejoin="round"/>
+            <text x="35" y="58" text-anchor="middle" font-size="15" font-weight="800" fill="var(--accent)">x</text>
+            <text x="225" y="58" text-anchor="middle" font-size="15" font-weight="800" fill="var(--accent)">6</text>
+          </g>
+          <text x="130" y="12" text-anchor="middle" font-size="14" font-weight="800" fill="#EC4899">=</text>
+        </svg>
+      </div>
+      <div class="diagramm-legende"><span>Beide Seiten bleiben im Gleichgewicht, solange du auf beiden Seiten dasselbe machst.</span></div>
+      <button class="diagramm-play-btn" data-anim="2"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Fasse zusammen: 5x - 3 + 2x + 7</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>x-Terme zu x-Termen, Zahlen zu Zahlen:</p>
+            <div class="rechenweg">5x + 2x = 7x
+-3 + 7 = 4</div>
+            <p class="antwort">Antwort: 7x + 4</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Löse nach x auf: 3x + 8 = 26</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Erst die +8 mit -8 aufheben, dann durch 3 teilen:</p>
+            <div class="rechenweg">3x + 8 = 26      | -8
+3x = 18          | :3
+x = 6</div>
+            <p class="antwort">Antwort: x = 6</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Textgleichung: Anna hat 15 € gespart. Jede Woche kommen 5 € dazu. Nach wie vielen Wochen hat sie 60 €?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Gesucht ist die Anzahl der Wochen w. Startwert 15 €, plus 5 € pro Woche, soll 60 € ergeben:</p>
+            <div class="rechenweg">15 + 5w = 60     | -15
+5w = 45          | :5
+w = 9</div>
+            <p class="antwort">Antwort: nach 9 Wochen</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 3: PROZENTRECHNEN ══════════════════ -->
+  <section class="thema" id="thema-3" style="--accent:#F59E0B;--accent-soft:#FEF3E2;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-percent"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 3</span>
+        <h2>Prozentrechnen</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="3"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Schreib dir die bekannten Werte kreuzweise auf: auf die eine Seite die Prozentangabe, auf die andere den Euro- oder Stückwert. Dann rechnest du über Kreuz: multiplizieren, dann durch die dritte Zahl teilen.</p>
+      <div class="merksatz">Merksatz: <b>Prozentwert = Grundwert · Prozentsatz : 100.</b> Egal was gesucht ist, die Formel umstellen und einsetzen.</div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 160 160" class="svg-prozentring">
+          <circle cx="80" cy="80" r="62" fill="none" stroke="var(--accent-soft)" stroke-width="16"/>
+          <circle class="prozentring-fill" cx="80" cy="80" r="62" fill="none" stroke="var(--accent)" stroke-width="16" stroke-linecap="round" stroke-dasharray="389.6" stroke-dashoffset="389.6" transform="rotate(-90 80 80)"/>
+          <text x="80" y="76" text-anchor="middle" font-size="26" font-weight="800" fill="var(--accent)">25%</text>
+          <text x="80" y="96" text-anchor="middle" font-size="11" fill="#5B5A6B">Rabatt</text>
+        </svg>
+      </div>
+      <div class="diagramm-legende"><span>Beispiel: Pulli für 40 €, 25 % Rabatt → 10 € gespart.</span></div>
+      <button class="diagramm-play-btn" data-anim="3"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Ein Pulli kostet 40 €. Es gibt 25 % Rabatt. Wie viel Euro sparst du?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Gesucht ist der Prozentwert. Grundwert 40 € = 100 %, gesucht sind 25 %:</p>
+            <div class="rechenweg">100 % ↔ 40 €
+25 % ↔ x €
+x = (40 · 25) : 100 = 10 €</div>
+            <p class="antwort">Antwort: 10 € Rabatt</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Von 20 Aufgaben hat Tom 16 richtig. Wie viel Prozent hat er geschafft?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Gesucht ist der Prozentsatz. Grundwert 20 Aufgaben = 100 %, Prozentwert 16:</p>
+            <div class="rechenweg">100 % ↔ 20
+p % ↔ 16
+p = (16 · 100) : 20 = 80</div>
+            <p class="antwort">Antwort: 80 %</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>9 € Rabatt entsprechen 15 % des ursprünglichen Preises. Wie teuer war der Artikel vorher?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Gesucht ist der Grundwert. 15 % entsprechen 9 €, gesucht sind die vollen 100 %:</p>
+            <div class="rechenweg">100 % ↔ x
+15 % ↔ 9 €
+x = (9 · 100) : 15 = 60 €</div>
+            <p class="antwort">Antwort: 60 €</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 4: DREIECKE & KONSTRUKTIONEN ══════════════════ -->
+  <section class="thema" id="thema-4" style="--accent:#14B8A6;--accent-soft:#E6FBF8;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-triangle"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 4</span>
+        <h2>Dreiecke & Konstruktionen</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="4"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Dreiecke unterscheidet man nach Winkeln (spitz-, recht- oder stumpfwinklig) und nach Seiten (gleichseitig, gleichschenklig oder unregelmäßig). Die drei Innenwinkel ergeben immer zusammen 180°.</p>
+      <p>Zum Konstruieren braucht man immer genau drei Angaben: <strong>SSS</strong> (drei Seiten), <strong>SWS</strong> (Seite-Winkel-Seite) oder <strong>WSW</strong> (Winkel-Seite-Winkel). Die <strong>Mittelsenkrechte</strong> steht im rechten Winkel genau durch die Mitte einer Strecke. Die <strong>Winkelhalbierende</strong> teilt einen Winkel in zwei gleich große Hälften.</p>
+      <div class="merksatz">Merksatz: <b>α + β + γ = 180°.</b> Kennst du zwei Winkel, findest du den dritten immer durch Abziehen von 180°.</div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 240 170" class="svg-dreieck">
+          <polygon points="30,150 220,150 130,25" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>
+          <path class="dr-bogen" d="M52 150 A22 22 0 0 1 42 132" fill="none" stroke="#EC4899" stroke-width="2" stroke-dasharray="24" stroke-dashoffset="24"/>
+          <path class="dr-bogen" d="M200 150 A22 22 0 0 0 208 130" fill="none" stroke="#EC4899" stroke-width="2" stroke-dasharray="24" stroke-dashoffset="24"/>
+          <path class="dr-bogen" d="M120 42 A22 22 0 0 1 141 43" fill="none" stroke="#EC4899" stroke-width="2" stroke-dasharray="24" stroke-dashoffset="24"/>
+          <text x="48" y="140" font-size="13" fill="#EC4899" font-weight="700">α</text>
+          <text x="196" y="140" font-size="13" fill="#EC4899" font-weight="700">β</text>
+          <text x="126" y="55" font-size="13" fill="#EC4899" font-weight="700">γ</text>
+          <text x="30" y="165" font-size="12" fill="#5B5A6B" font-weight="700">A</text>
+          <text x="216" y="165" font-size="12" fill="#5B5A6B" font-weight="700">B</text>
+          <text x="128" y="18" font-size="12" fill="#5B5A6B" font-weight="700">C</text>
+          <text class="dr-summe" x="130" y="166" text-anchor="middle" font-size="12" font-weight="700" fill="var(--accent)" opacity="0">α + β + γ = 180°</text>
+        </svg>
+      </div>
+      <div class="diagramm-legende"><span>α + β + γ = 180° — egal wie das Dreieck aussieht.</span></div>
+      <button class="diagramm-play-btn" data-anim="4"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Ein Dreieck hat die Winkel α = 55° und β = 65°. Wie groß ist γ?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Innenwinkelsumme ist immer 180°:</p>
+            <div class="rechenweg">γ = 180° - 55° - 65° = 60°</div>
+            <p class="antwort">Antwort: γ = 60°</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Ein Dreieck hat die Seiten a = 5 cm, b = 5 cm, c = 5 cm. Welche Dreiecksart ist das?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Alle drei Seiten sind gleich lang, damit auch alle Winkel gleich groß (je 60°).</p>
+            <p class="antwort">Antwort: gleichseitiges Dreieck</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Was zeichnest du bei der Mittelsenkrechten einer Strecke AB ein?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Eine Linie, die senkrecht (im 90°-Winkel) genau durch die Mitte von AB verläuft. Jeder Punkt auf ihr ist gleich weit von A und von B entfernt.</p>
+            <p class="antwort">Antwort: die Senkrechte durch den Mittelpunkt von AB</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 5: FLÄCHEN & UMFANG ══════════════════ -->
+  <section class="thema" id="thema-5" style="--accent:#EC4899;--accent-soft:#FDEBF3;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-shapes"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 5</span>
+        <h2>Flächen und Umfang</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="5"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Jede Figur hat ihre eigene Flächenformel. Wichtig ist immer: die <strong>Höhe</strong> steht im rechten Winkel zur Grundseite, egal wie schräg die Figur aussieht. Der Umfang ist einfach die Summe aller Außenseiten.</p>
+      <div class="formen-grid">
+        <div class="form-karte">
+          <svg viewBox="0 0 90 62"><rect x="12" y="12" width="66" height="38" fill="none" stroke="var(--accent)" stroke-width="2.2"/></svg>
+          <div class="form-name">Rechteck</div>
+          <div class="form-formel">A = a · b</div>
+        </div>
+        <div class="form-karte">
+          <svg viewBox="0 0 90 62"><polygon points="20,12 78,12 70,50 12,50" fill="none" stroke="var(--accent)" stroke-width="2.2"/><line x1="20" y1="12" x2="20" y2="50" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="2 2"/></svg>
+          <div class="form-name">Parallelogramm</div>
+          <div class="form-formel">A = a · h</div>
+        </div>
+        <div class="form-karte">
+          <svg viewBox="0 0 90 62"><polygon points="45,10 78,50 12,50" fill="none" stroke="var(--accent)" stroke-width="2.2"/><line x1="45" y1="10" x2="45" y2="50" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="2 2"/></svg>
+          <div class="form-name">Dreieck</div>
+          <div class="form-formel">A = g·h : 2</div>
+        </div>
+        <div class="form-karte">
+          <svg viewBox="0 0 90 62"><polygon points="28,12 62,12 78,50 12,50" fill="none" stroke="var(--accent)" stroke-width="2.2"/><line x1="28" y1="12" x2="28" y2="50" stroke="var(--accent)" stroke-width="1.4" stroke-dasharray="2 2"/></svg>
+          <div class="form-name">Trapez</div>
+          <div class="form-formel">A = (a+c):2·h</div>
+        </div>
+      </div>
+      <button class="diagramm-play-btn" data-anim="5"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+      <div class="merksatz">Merksatz: <b>Drache und Raute:</b> A = (e · f) : 2 — Diagonale mal Diagonale, geteilt durch zwei.</div>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Ein Dreieck hat g = 8 cm und h = 5 cm. Berechne die Fläche.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <div class="rechenweg">A = g · h : 2 = (8 · 5) : 2 = 20 cm²</div>
+            <p class="antwort">Antwort: A = 20 cm²</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Ein Trapez hat a = 10 cm, c = 6 cm, h = 4 cm. Berechne die Fläche.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <div class="rechenweg">A = (a+c) : 2 · h = (10+6) : 2 · 4 = 8 · 4 = 32 cm²</div>
+            <p class="antwort">Antwort: A = 32 cm²</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Eine Raute hat die Seitenlänge a = 7 cm. Berechne den Umfang.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Eine Raute hat vier gleich lange Seiten:</p>
+            <div class="rechenweg">U = 4 · a = 4 · 7 = 28 cm</div>
+            <p class="antwort">Antwort: U = 28 cm</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 6: PRISMEN & NETZE ══════════════════ -->
+  <section class="thema" id="thema-6" style="--accent:#06B6D4;--accent-soft:#E3F8FB;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-cube"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 6</span>
+        <h2>Körper: Prismen, Netze & Volumen</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="6"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Ein Prisma hat zwei parallele, deckungsgleiche Flächen (Grund- und Deckfläche) und dazwischen lauter Rechtecke als Seitenflächen. Es hat immer genauso viele Seitenflächen, wie die Grundfläche Ecken hat.</p>
+      <p>Ein <strong>Netz</strong> ist der Körper, aufgeklappt in die Ebene. Faltest du das Netz an den Kanten zusammen, entsteht wieder der 3D-Körper. Die <strong>Oberfläche</strong> ist nichts anderes als die Fläche dieses ganzen Netzes: alle Flächen, die außen um den Körper herum liegen, zusammengerechnet — Grundfläche, Deckfläche und alle Seitenflächen.</p>
+      <p>Das <strong>Volumen</strong> eines Prismas berechnest du dagegen immer gleich, egal welche Form die Grundfläche hat — ob Quadrat, Rechteck oder Dreieck: erst die Grundfläche mit der passenden Formel von oben berechnen, dann mit der Höhe des Prismas multiplizieren.</p>
+      <div class="merksatz">Merksatz: <b>Volumen = Grundfläche · Höhe</b> (V = G · h). <b>Oberfläche = alle Flächen im Netz zusammen.</b></div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 320 150" class="svg-prisma">
+          <polygon points="20,120 70,120 55,55 15,55" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="2"/>
+          <polygon points="55,55 105,55 120,120 70,120" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="3 3"/>
+          <line x1="15" y1="55" x2="55" y2="20" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="70" y1="120" x2="105" y2="55" stroke="var(--accent)" stroke-width="2"/>
+          <line x1="20" y1="120" x2="55" y2="87" stroke="var(--accent)" stroke-width="2" stroke-dasharray="3 3"/>
+          <polygon points="55,20 105,55 70,120 20,120" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <path class="pr-pfeil" d="M140 85 h20" stroke="var(--accent)" stroke-width="2" marker-end="url(#pfeil-netz)"/>
+          <defs><marker id="pfeil-netz" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="var(--accent)"/></marker></defs>
+          <text x="150" y="70" font-size="10" fill="#5B5A6B">aufklappen</text>
+          <g class="pr-netz" transform="translate(180,20)">
+            <polygon points="30,0 60,20 0,20" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="0" y="20" width="30" height="55" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="30" y="20" width="30" height="55" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <rect x="-30" y="20" width="30" height="55" fill="none" stroke="var(--accent)" stroke-width="2"/>
+            <polygon points="30,75 60,55 0,55" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          </g>
+        </svg>
+      </div>
+      <div class="diagramm-legende"><span>Dreiecksprisma: 2 Dreiecke + 3 Rechtecke im Netz — das zusammen ist die Oberfläche.</span></div>
+      <button class="diagramm-play-btn" data-anim="6"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Wahr oder falsch: Ein Prisma hat immer eine dreieckige Grundfläche.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Die Grundfläche kann jedes Vieleck sein: Dreieck, Rechteck, Fünfeck ... Ein Dreiecksprisma ist nur ein Beispiel unter vielen.</p>
+            <p class="antwort">Antwort: falsch</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Aus wie vielen Rechtecken besteht das Netz eines Dreiecksprismas (nur die Seitenflächen)? Und was ergibt die Grundfläche, die Deckfläche und diese Rechtecke zusammen?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Jede der drei Seiten des Dreiecks bekommt ein eigenes Rechteck als Seitenfläche. Grundfläche, Deckfläche und die drei Rechtecke zusammen ergeben die komplette Oberfläche des Prismas.</p>
+            <p class="antwort">Antwort: 3 Rechtecke — zusammen mit den 2 Dreiecken ist das die Oberfläche</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Ein Prisma hat eine rechteckige Grundfläche mit den Seiten 6 cm und 4 cm. Die Höhe des Prismas beträgt 10 cm. Berechne das Volumen.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Erst die Grundfläche (Rechteck), dann mal Höhe des Prismas:</p>
+            <div class="rechenweg">G = 6 cm · 4 cm = 24 cm²
+V = G · h = 24 cm² · 10 cm = 240 cm³</div>
+            <p class="antwort">Antwort: V = 240 cm³</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">D</span>Ein Dreiecksprisma hat als Grundfläche ein Dreieck mit g = 6 cm und h = 4 cm. Die Höhe des Prismas beträgt 9 cm. Berechne das Volumen.</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Gleiches Prinzip wie eben, nur ist die Grundfläche diesmal ein Dreieck:</p>
+            <div class="rechenweg">G = g · h : 2 = (6 · 4) : 2 = 12 cm²
+V = G · h(Prisma) = 12 cm² · 9 cm = 108 cm³</div>
+            <p class="antwort">Antwort: V = 108 cm³</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ══════════════════ THEMA 7: FUNKTIONALE ZUSAMMENHÄNGE ══════════════════ -->
+  <section class="thema" id="thema-7" style="--accent:#84CC16;--accent-soft:#F2FBE3;">
+    <div class="thema-kopf reveal">
+      <div class="thema-icon"><svg class="icon"><use href="#icon-chart"></use></svg></div>
+      <div>
+        <span class="thema-label">Thema 7</span>
+        <h2>Funktionale Zusammenhänge</h2>
+      </div>
+      <button class="erledigt-btn" data-thema="7"><svg class="icon"><use href="#icon-check"></use></svg><span>Erledigt</span></button>
+    </div>
+
+    <div class="erklaerung-karte reveal">
+      <h3>So geht's</h3>
+      <p>Eine Zuordnung ist eine Tabelle: oben eine Größe (z. B. Anzahl), unten die andere (z. B. Preis). Sie ist <strong>proportional</strong>, wenn beim Verdoppeln von x sich auch y verdoppelt — der Quotient y : x bleibt für jedes Wertepaar gleich. Im Graph erkennst du das sofort: eine Gerade, die genau durch den Nullpunkt (0/0) geht.</p>
+      <p>Hat die Zuordnung einen <strong>Startwert</strong>, ist der Graph zwar immer noch eine Gerade mit gleichmäßiger Steigung, man nennt sie dann aber <strong>linear</strong> statt proportional. Beispiel: Ein E-Scooter kostet 1 € Grundgebühr, dazu 0,15 € pro Minute. Selbst bei 0 Minuten zahlst du schon 1 € — der Graph startet also nicht bei null, sondern ein Stück höher auf der y-Achse.</p>
+      <p>Manche Zuordnungen folgen aber gar keiner Geraden, weil sich die Werte unregelmäßig ändern — mal schneller, mal langsamer. Wächst zum Beispiel ein Baum im ersten Jahr 40 cm und im zweiten nur 15 cm, gibt es kein festes Muster mehr. Dann ist die Zuordnung <strong>weder proportional noch linear</strong>.</p>
+      <div class="merksatz">Merksatz: <b>Gerade durch den Nullpunkt</b> = proportional. <b>Gerade mit Startwert</b> = linear (nicht proportional). <b>Keine Gerade, kein festes Muster</b> = weder noch.</div>
+
+      <div class="diagramm">
+        <svg viewBox="0 0 300 210" class="svg-funktion">
+          <line x1="35" y1="180" x2="35" y2="15" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M28 22 L35 12 L42 22" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line x1="35" y1="180" x2="280" y2="180" stroke="var(--accent)" stroke-width="2" stroke-linecap="round"/>
+          <path d="M270 173 L282 180 L270 187" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <line class="fn-linie-prop" x1="35" y1="180" x2="260" y2="45" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-dasharray="256" stroke-dashoffset="256"/>
+          <circle class="fn-punkt-prop" cx="35" cy="180" r="0" fill="var(--accent)"/>
+          <line class="fn-linie-nicht" x1="35" y1="160" x2="260" y2="65" stroke="#EC4899" stroke-width="3" stroke-linecap="round" stroke-dasharray="7 5" opacity="0"/>
+          <circle class="fn-punkt-nicht" cx="35" cy="160" r="0" fill="#EC4899"/>
+          <text x="288" y="184" font-size="11" fill="#5B5A6B">Minuten</text>
+          <text x="8" y="14" font-size="11" fill="#5B5A6B">€</text>
+        </svg>
+      </div>
+      <div class="diagramm-legende">
+        <span><i class="legende-strich" style="background:var(--accent)"></i>proportional — Brötchen (0,50 €/Stück, Start bei 0)</span>
+        <span><i class="legende-strich" style="background:#EC4899"></i>linear, nicht proportional — E-Scooter (1 € Grundgebühr + Minutenpreis)</span>
+      </div>
+      <button class="diagramm-play-btn" data-anim="7"><svg class="icon"><use href="#icon-play"></use></svg>Nochmal zeigen</button>
+    </div>
+
+    <div class="aufgaben-grid">
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">A</span>Tabelle: 1 Brötchen kostet 0,50 €, 2 Brötchen 1,00 €, 3 Brötchen 1,50 €. Ist das proportional?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Prüfe den Quotienten Preis : Anzahl für jedes Wertepaar:</p>
+            <div class="rechenweg">0,50 : 1 = 0,50
+1,00 : 2 = 0,50
+1,50 : 3 = 0,50</div>
+            <p class="antwort">Antwort: Ja, proportional (Faktor 0,50 € pro Stück)</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">B</span>Der E-Scooter kostet 1 € Grundgebühr plus 0,15 € pro Minute. Ist das proportional?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Schon bei 0 Minuten zahlst du 1 €, nicht 0 €. Der Graph startet nicht im Nullpunkt, ist aber trotzdem eine Gerade mit gleichmäßiger Steigung.</p>
+            <p class="antwort">Antwort: Nein — linear, aber nicht proportional (wegen der 1 € Grundgebühr)</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">C</span>Ein Baum wächst im ersten Jahr 40 cm, im zweiten Jahr nur 15 cm, im dritten Jahr 60 cm. Proportional, linear oder weder noch?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Von Jahr zu Jahr ändert sich das Wachstum unterschiedlich stark (40, dann 15, dann 60 cm) — es gibt keine gleichmäßige Steigung und keinen konstanten Quotienten. Damit ist es keine Gerade.</p>
+            <p class="antwort">Antwort: weder proportional noch linear</p>
+          </div>
+        </div></div>
+      </article>
+
+      <article class="aufgabe-karte">
+        <div class="aufgabe-kopf">
+          <p class="aufgabe-text"><span class="aufgabe-nr">D</span>Woran erkennst du eine proportionale Zuordnung sofort im Graphen?</p>
+          <button class="loesung-toggle"><span>Lösung</span><svg class="icon"><use href="#icon-chevron"></use></svg></button>
+        </div>
+        <div class="loesung-panel-aussen"><div class="loesung-panel-innen">
+          <div class="loesung-panel">
+            <p>Der Graph ist eine Gerade, und diese Gerade geht genau durch den Nullpunkt (0/0).</p>
+            <p class="antwort">Antwort: Gerade durch den Ursprung</p>
+          </div>
+        </div></div>
+      </article>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <svg class="icon"><use href="#icon-sparkle"></use></svg>
+  <div class="footer-titel">Geschafft!</div>
+  <p>Sieben Themen, ein Sommer ohne Mathe-Lücken. Schöne Ferien!</p>
+</footer>
+
+<script>
+(function() {
+  "use strict";
+
+  var THEMEN_ANZAHL = 7;
+  var STORAGE_KEY = "mathe-sommer-fortschritt";
+  var FARBEN = ["#4C6EF5", "#8B5CF6", "#F59E0B", "#14B8A6", "#EC4899", "#06B6D4", "#84CC16"];
+
+  function ladeFortschritt() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (e) { return {}; }
+  }
+
+  function speichereFortschritt(status) {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(status)); } catch (e) {}
+  }
+
+  var fortschritt = ladeFortschritt();
+
+  function anzahlErledigt() {
+    var n = 0;
+    for (var i = 1; i <= THEMEN_ANZAHL; i++) if (fortschritt[i]) n++;
+    return n;
+  }
+
+  function fortschrittUiAktualisieren() {
+    var n = anzahlErledigt();
+    var prozent = Math.round((n / THEMEN_ANZAHL) * 100);
+    document.getElementById("topfill").style.width = prozent + "%";
+    document.getElementById("herofill").style.width = prozent + "%";
+    document.getElementById("fortschritt-text").textContent = n + " / " + THEMEN_ANZAHL + " Themen abgehakt";
+
+    document.querySelectorAll(".erledigt-btn").forEach(function(btn) {
+      var t = btn.getAttribute("data-thema");
+      var aktiv = !!fortschritt[t];
+      btn.classList.toggle("aktiv", aktiv);
+      btn.querySelector("span").textContent = aktiv ? "Erledigt" : "Erledigt";
+    });
+    document.querySelectorAll(".nav-pille").forEach(function(pille) {
+      var t = pille.getAttribute("data-thema");
+      pille.classList.toggle("erledigt", !!fortschritt[t]);
+    });
+
+    var karte = document.getElementById("glueckwunsch-karte");
+    karte.classList.toggle("sichtbar", n === THEMEN_ANZAHL);
+  }
+
+  function konfetti(x, y) {
+    for (var i = 0; i < 16; i++) {
+      var teil = document.createElement("div");
+      teil.className = "konfetti-teil";
+      var winkel = (Math.random() * 360) * Math.PI / 180;
+      var distanz = 60 + Math.random() * 70;
+      teil.style.setProperty("--x", x + "px");
+      teil.style.setProperty("--y", y + "px");
+      teil.style.setProperty("--tx", Math.cos(winkel) * distanz + "px");
+      teil.style.setProperty("--ty", (Math.sin(winkel) * distanz - 30) + "px");
+      teil.style.setProperty("--rot", (Math.random() * 360) + "deg");
+      teil.style.background = FARBEN[Math.floor(Math.random() * FARBEN.length)];
+      teil.style.animationDelay = (Math.random() * 0.1) + "s";
+      document.body.appendChild(teil);
+      teil.addEventListener("animationend", function() { this.remove(); });
+    }
+  }
+
+  document.querySelectorAll(".erledigt-btn").forEach(function(btn) {
+    btn.addEventListener("click", function(e) {
+      var t = btn.getAttribute("data-thema");
+      var wirdAktiv = !fortschritt[t];
+      fortschritt[t] = wirdAktiv;
+      speichereFortschritt(fortschritt);
+      fortschrittUiAktualisieren();
+      if (wirdAktiv) {
+        var rect = btn.getBoundingClientRect();
+        konfetti(rect.left + rect.width / 2, rect.top + rect.height / 2);
+      }
+    });
+  });
+
+  fortschrittUiAktualisieren();
+
+  // Lösungs-Toggle
+  document.querySelectorAll(".loesung-toggle").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var karte = btn.closest(".aufgabe-karte");
+      var offen = karte.classList.toggle("offen");
+      btn.querySelector("span").textContent = offen ? "Ausblenden" : "Lösung";
+    });
+  });
+
+  // Scroll-Reveal
+  var reveals = document.querySelectorAll(".reveal, .aufgabe-karte, .diagramm");
+  reveals.forEach(function(el, i) {
+    if (!el.classList.contains("reveal")) el.classList.add("reveal");
+    el.style.transitionDelay = (Math.min(i % 4, 3) * 0.08) + "s";
+  });
+
+  var beobachter = new IntersectionObserver(function(eintraege) {
+    eintraege.forEach(function(eintrag) {
+      if (eintrag.isIntersecting) {
+        eintrag.target.classList.add("is-visible");
+        beobachter.unobserve(eintrag.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+
+  reveals.forEach(function(el) { beobachter.observe(el); });
+
+  // ══ Themen-Animationen: jede Erklärung bekommt eine klickbare "Nochmal zeigen"-Animation ══
+  var EASE_BOUNCE = "cubic-bezier(.34,1.56,.64,1)";
+
+  var animationen = {
+    1: function() {
+      var svg = document.querySelector(".svg-zahlenstrahl");
+      if (!svg) return;
+      var pfeil = svg.querySelector(".zs-pfeil");
+      var start = svg.querySelector(".zs-punkt-start");
+      var ende = svg.querySelector(".zs-punkt-ende");
+      var label = svg.querySelector(".zs-label");
+      pfeil.style.strokeDashoffset = "90";
+      ende.setAttribute("r", "0");
+      label.setAttribute("opacity", "0");
+      start.animate([{ opacity: 0, transform: "scale(0)" }, { opacity: 1, transform: "scale(1)" }], { duration: 300, easing: EASE_BOUNCE, fill: "backwards" });
+      pfeil.animate([{ strokeDashoffset: 90 }, { strokeDashoffset: 0 }], { duration: 650, delay: 200, easing: "ease-out", fill: "forwards" });
+      setTimeout(function() {
+        ende.animate([{ r: 0 }, { r: 6 }, { r: 5 }], { duration: 350, easing: EASE_BOUNCE, fill: "forwards" });
+        label.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 300, fill: "forwards" });
+      }, 820);
+    },
+    2: function() {
+      var balken = document.querySelector(".waage-balken");
+      if (!balken) return;
+      balken.style.transformOrigin = "130px 34px";
+      balken.animate([
+        { transform: "rotate(-7deg)" },
+        { transform: "rotate(3deg)" },
+        { transform: "rotate(0deg)" }
+      ], { duration: 900, easing: EASE_BOUNCE });
+    },
+    3: function() {
+      var ring = document.querySelector(".prozentring-fill");
+      if (!ring) return;
+      ring.style.transition = "none";
+      ring.style.strokeDashoffset = "389.6";
+      void ring.offsetWidth;
+      ring.style.transition = "stroke-dashoffset 1.1s cubic-bezier(.4,0,.2,1)";
+      ring.style.strokeDashoffset = (389.6 * 0.75) + "";
+    },
+    4: function() {
+      var svg = document.querySelector(".svg-dreieck");
+      if (!svg) return;
+      var boegen = svg.querySelectorAll(".dr-bogen");
+      var summe = svg.querySelector(".dr-summe");
+      summe.setAttribute("opacity", "0");
+      boegen.forEach(function(bogen, i) {
+        bogen.style.strokeDashoffset = "24";
+        bogen.animate([{ strokeDashoffset: 24 }, { strokeDashoffset: 0 }], { duration: 400, delay: i * 220, easing: "ease-out", fill: "forwards" });
+      });
+      setTimeout(function() {
+        summe.animate([{ opacity: 0, transform: "translateY(4px)" }, { opacity: 1, transform: "translateY(0)" }], { duration: 350, fill: "forwards" });
+      }, boegen.length * 220 + 250);
+    },
+    5: function() {
+      var karten = document.querySelectorAll("#thema-5 .form-karte");
+      karten.forEach(function(karte, i) {
+        karte.animate([
+          { opacity: 0, transform: "translateY(10px) scale(0.9)" },
+          { opacity: 1, transform: "translateY(0) scale(1)" }
+        ], { duration: 420, delay: i * 110, easing: EASE_BOUNCE, fill: "backwards" });
+      });
+    },
+    6: function() {
+      var pfeil = document.querySelector(".pr-pfeil");
+      var netz = document.querySelector(".pr-netz");
+      if (!pfeil || !netz) return;
+      netz.animate([
+        { opacity: 0, transform: "translate(160px,20px) scale(0.85)" },
+        { opacity: 1, transform: "translate(180px,20px) scale(1)" }
+      ], { duration: 550, easing: EASE_BOUNCE, fill: "backwards" });
+      pfeil.animate([
+        { transform: "translateX(0px)", opacity: 0.4 },
+        { transform: "translateX(6px)", opacity: 1 },
+        { transform: "translateX(0px)", opacity: 0.4 }
+      ], { duration: 900, iterations: 2, easing: "ease-in-out" });
+    },
+    7: function() {
+      var svg = document.querySelector(".svg-funktion");
+      if (!svg) return;
+      var linieProp = svg.querySelector(".fn-linie-prop");
+      var punktProp = svg.querySelector(".fn-punkt-prop");
+      var linieNicht = svg.querySelector(".fn-linie-nicht");
+      var punktNicht = svg.querySelector(".fn-punkt-nicht");
+      [linieProp, linieNicht].forEach(function(l) { l.style.strokeDashoffset = getComputedStyle(l).strokeDasharray; });
+      punktProp.setAttribute("r", "0"); punktNicht.setAttribute("r", "0");
+      punktProp.animate([{ r: 0 }, { r: 5 }], { duration: 250, easing: EASE_BOUNCE, fill: "forwards" });
+      linieProp.animate([{ strokeDashoffset: 256 }, { strokeDashoffset: 0 }], { duration: 700, delay: 150, easing: "ease-out", fill: "forwards" });
+      setTimeout(function() {
+        punktNicht.animate([{ r: 0 }, { r: 5 }], { duration: 250, easing: EASE_BOUNCE, fill: "forwards" });
+        linieNicht.animate([{ strokeDashoffset: 246 }, { strokeDashoffset: 0 }], { duration: 700, easing: "ease-out", fill: "forwards" });
+      }, 700);
+    }
+  };
+
+  document.querySelectorAll(".diagramm-play-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var n = btn.getAttribute("data-anim");
+      if (animationen[n]) animationen[n]();
+    });
+  });
+
+  var animierteThemen = document.querySelectorAll(".thema");
+  var animBeobachter = new IntersectionObserver(function(eintraege) {
+    eintraege.forEach(function(eintrag) {
+      if (eintrag.isIntersecting) {
+        var n = eintrag.target.id.replace("thema-", "");
+        if (animationen[n]) animationen[n]();
+        animBeobachter.unobserve(eintrag.target);
+      }
+    });
+  }, { threshold: 0.35 });
+  animierteThemen.forEach(function(s) { animBeobachter.observe(s); });
+
+  // Nav aktiv-Status beim Scrollen
+  var themenSections = document.querySelectorAll(".thema");
+  var navBeobachter = new IntersectionObserver(function(eintraege) {
+    eintraege.forEach(function(eintrag) {
+      var id = eintrag.target.id;
+      var pille = document.querySelector('.nav-pille[href="#' + id + '"]');
+      if (!pille) return;
+      if (eintrag.isIntersecting) {
+        document.querySelectorAll(".nav-pille").forEach(function(p) { p.classList.remove("aktiv"); });
+        pille.classList.add("aktiv");
+        pille.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" });
+      }
+    });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+
+  themenSections.forEach(function(s) { navBeobachter.observe(s); });
+
+})();
+</script>
+
+</body>
+</html>
