@@ -619,10 +619,26 @@
     background: var(--bg);
     border: 2px solid var(--border);
     border-radius: var(--radius-sm);
-    padding: 6px 8px 6px 14px;
+    padding: 6px 8px;
     transition: border-color 0.2s ease;
   }
   .eingabe-gruppe:focus-within { border-color: var(--accent); }
+
+  .vorzeichen-btn {
+    flex-shrink: 0;
+    width: 34px; height: 34px;
+    border-radius: 8px;
+    border: 2px solid var(--border);
+    background: var(--card);
+    color: var(--ink-soft);
+    font-size: 1.15rem;
+    font-weight: 800;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .vorzeichen-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .vorzeichen-btn.aktiv { background: var(--accent); border-color: var(--accent); color: #fff; }
 
   .eingabe-praefix { font-weight: 700; color: var(--ink-soft); font-size: 0.95rem; }
 
@@ -1718,6 +1734,7 @@ V = G · h(Prisma) = 12 cm² · 9 cm = 108 cm³</div>
     slot.innerHTML =
       '<div class="antwort-zeile">' +
         '<div class="eingabe-gruppe">' +
+          '<button type="button" class="vorzeichen-btn" aria-label="Minuszeichen ein/aus" aria-pressed="false">−</button>' +
           (praefix ? '<span class="eingabe-praefix">' + praefix + '</span>' : '') +
           '<input type="text" inputmode="decimal" class="antwort-eingabe" placeholder="?" aria-label="Deine Antwort">' +
           (einheit ? '<span class="einheit-suffix">' + einheit + '</span>' : '') +
@@ -1728,6 +1745,25 @@ V = G · h(Prisma) = 12 cm² · 9 cm = 108 cm³</div>
     var eingabe = slot.querySelector(".antwort-eingabe");
     var gruppe = slot.querySelector(".eingabe-gruppe");
     var pruefenBtn = slot.querySelector(".pruefen-btn");
+    var vorzeichenBtn = slot.querySelector(".vorzeichen-btn");
+
+    vorzeichenBtn.addEventListener("click", function() {
+      var negativ = eingabe.value.trim().charAt(0) === "-";
+      if (negativ) {
+        eingabe.value = eingabe.value.trim().slice(1);
+      } else {
+        eingabe.value = "-" + eingabe.value.trim();
+      }
+      vorzeichenBtn.classList.toggle("aktiv", !negativ);
+      vorzeichenBtn.setAttribute("aria-pressed", String(!negativ));
+      eingabe.focus();
+    });
+
+    eingabe.addEventListener("input", function() {
+      var negativ = eingabe.value.trim().charAt(0) === "-";
+      vorzeichenBtn.classList.toggle("aktiv", negativ);
+      vorzeichenBtn.setAttribute("aria-pressed", String(negativ));
+    });
 
     function pruefen() {
       var wert = normalisiereZahl(eingabe.value);
